@@ -1,0 +1,25 @@
+{
+  "name": "allex_lockingjoblib",
+  "version": "1.0.0",
+  "description": "AllexJS lib with a LockingJob that enables transaction-like lock on JobCollection",
+  "main": "index.js",
+  "scripts": {
+    "test": "allex-mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/allex-libs/lockingjob.git"
+  },
+  "keywords": [
+    "ecosystem:AllexJS",
+    "locking",
+    "job",
+    "lib"
+  ],
+  "author": "Andrija Petrovic <andrija.hers@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/allex-libs/lockingjob/issues"
+  },
+  "homepage": "https://github.com/allex-libs/lockingjob#readme"
+}
