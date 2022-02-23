@@ -63,7 +63,9 @@ function createLockingJob (execlib, mylib) {
     this.lockjobs = null;
     ExecJobRelatedJob.prototype.destroy.call(this);
   };
-  JobRunner.prototype.onOkToGo = function () {};
+  JobRunner.prototype.onOkToGo = function () {
+    this.lockJobsCheck();
+  };
   JobRunner.prototype.addLockJob = function (lockjob) {
     if (this.running) {
       throw this.alreadyRunningError();
@@ -83,12 +85,15 @@ function createLockingJob (execlib, mylib) {
       return;
     }
     this.lockjobs[index] = null;
+    this.lockJobsCheck();
+  };
+  JobRunner.prototype.lockJobsCheck = function () {
     if (this.noMoreLockJobs()) {
       qlib.promise2defer(this.execjob.go(), this);
     }
   };
   JobRunner.prototype.noMoreLockJobs = function () {
-    if (!lib.isArray(this.lockjobs)) {
+    if (!(lib.isArray(this.lockjobs) && this.lockjobs.length>0)) {
       return true;
     }
     return this.lockjobs.every(function (lj) {return !lj;});
